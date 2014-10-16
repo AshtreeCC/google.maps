@@ -55,6 +55,8 @@ function setLayerControls(controlDiv, mapsEngineLayer, map) {
 
 	// Set CSS for the control sub-menu
 	var controlDropdown = document.createElement('div');
+        controlDiv.className = 'layer-select';
+        controlDropdown.className = 'layer-select-inner';
 	controlDropdown.style.position = 'absolute';
 	controlDropdown.style.right = 0;
 	controlDropdown.style.marginTop = '19px';
