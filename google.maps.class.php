@@ -180,13 +180,15 @@ class Plugin_Google_Maps {
 	/**
 	 *
 	 */
-	public function setLayer($name, $mapid, $layerkey) {
+	public function setLayer($name, $mapid, $layerkey, $state=true) {
+                if (!$state) $state = 0;
 		$this->map_bf[] = "
 			mapsEngineLayer[{$this->layer}] = new google.maps.visualization.MapsEngineLayer({
-    			mapId: '{$mapid}',
-				layerKey: '{$layerkey}',
-    			map: map,
-    			name: '{$name}'
+                            mapId: '{$mapid}',
+                            layerKey: '{$layerkey}',
+                            map: map,
+                            name: '{$name}',
+                            state: {$state}
   			});
 		";
 		
