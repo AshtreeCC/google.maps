@@ -46,12 +46,12 @@ function setLayerControls(controlDiv, mapsEngineLayer, map) {
 	controlUI.style.minWidth = '29px';
 	controlUI.style.cursor = 'pointer';
 	controlUI.style.zIndex = '10000002';
-	controlDiv.appendChild(controlUI);
+	//controlDiv.appendChild(controlUI);
 
 	// Set CSS for the control interior
 	var controlText = document.createElement('div');
 	controlText.innerHTML = 'Layers';
-	controlUI.appendChild(controlText);
+	//controlUI.appendChild(controlText);
 
 	// Set CSS for the control sub-menu
 	var controlDropdown = document.createElement('div');
@@ -68,7 +68,7 @@ function setLayerControls(controlDiv, mapsEngineLayer, map) {
 	controlDropdown.style.minWidth = '105px';
 	controlDropdown.style.cursor = 'pointer';
 	controlDropdown.style.zIndex = '10000000';
-	controlDropdown.style.display = 'none';
+	controlDropdown.style.display = 'block';
 	controlDiv.appendChild(controlDropdown);
 
 	for (i in mapsEngineLayer) {
@@ -92,6 +92,6 @@ function setLayerControls(controlDiv, mapsEngineLayer, map) {
 	}
 
 	// Setup event listeners
-	google.maps.event.addDomListener(controlDiv, 'mouseover', function(){toggleLayersMenu(controlDropdown, 'show');});
-	google.maps.event.addDomListener(controlDiv, 'mouseout', function(){toggleLayersMenu(controlDropdown, 'hide');});
+	//google.maps.event.addDomListener(controlDiv, 'mouseover', function(){toggleLayersMenu(controlDropdown, 'show');});
+	//google.maps.event.addDomListener(controlDiv, 'mouseout', function(){toggleLayersMenu(controlDropdown, 'hide');});
 }
