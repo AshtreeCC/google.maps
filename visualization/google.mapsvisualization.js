@@ -82,6 +82,7 @@ function setLayerControls(controlDiv, mapsEngineLayer, map) {
 	 controlCheckbox.setAttribute("type", "checkbox");
 	 controlCheckbox.style.float = 'left';
 	 if (layer.map && layer.state) controlCheckbox.setAttribute('checked', 'checked');
+         else hide(layer);
 	 controlCheckWrapper.style.float = 'left';
 	 controlCheckLabel.style.cursor = 'pointer';
 	 controlCheckLabel.style.unselectable  = true;
