@@ -64,18 +64,16 @@ class Plugin_Google_Maps {
          * 
          */
         public function setSharebox() {
+            $htm = Ashtree_Html_Page::instance();
+            
             $htm->jss = ASH_PLUGINS . 'google.maps/custom/custom.sharebox.js';
             
             $this->map_af[] = "
                 // Add a custom control share box
-                $('#map_canvas').gmap('addControl', 'control', google.maps.ControlPosition.RIGHT_TOP);
-
-                // Add custom controls
-                map = $('#map_canvas').gmap('get', 'map');
                 shareDiv = $('<div/>');
                 shareCtl = new ShareControl(shareDiv, map);
-
                 shareDiv.index = 1;
+		        
                 map.controls[google.maps.ControlPosition.TOP_RIGHT].push(shareDiv.get(0));
             ";
         }
