@@ -65,8 +65,10 @@ class Plugin_Google_Maps {
          */
         public function setSharebox() {
             $htm = Ashtree_Html_Page::instance();
+            $tpl = Ashtree_Common_Template::instance();
             
-            $htm->jss = ASH_PLUGINS . 'google.maps/custom/custom.sharebox.js';
+            //$htm->jss = ASH_PLUGINS . 'google.maps/custom/custom.sharebox.js';
+            include('custom/custom.sharebox.php');
             
             $this->map_af[] = "
                 // Add a custom control share box

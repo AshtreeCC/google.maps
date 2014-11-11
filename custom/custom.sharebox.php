@@ -1,30 +1,23 @@
 <?php
+$tpl->download_link = ASH_BASEHTTP . "search.kml?";
+$tpl->results_url   = ASH_BASEHTTP . preg_replace('/^\//', '', $_SERVER['REQUEST_URI']);
 
 // Put the share box into a variable that can be used again
-$embed_link_path   = "{$tpl->portal_name}.mapaproject.org/embed/";
+$embed_link_path   = ASH_ROOTHTTP . "embed/";
 $embed_link_string = preg_replace('/.*?\?/is', '', $tpl->results_url);
-$snapshot_string   = preg_replace('/.*?\?/is', '', $tpl->download_link.$tpl->download_link_2);
+$snapshot_string   = preg_replace('/.*?\?/is', '', $_SERVER['REQUEST_URI'].'&t=kml');
 
 //$tpl->results_url = $embed_link_path.basic_hash($embed_link_string)."/";
 $tpl->embed_url   = $embed_link_path."map/".basic_hash($embed_link_string)."/";
-$tpl->embed_code  = "<iframe width=\"480\" height=\"385\" src=\"http://{$tpl->embed_url}\" frameborder=\"0\"></iframe>";
+$tpl->embed_code  = "<iframe width=\"480\" height=\"385\" src=\"{$tpl->embed_url}\" frameborder=\"0\"></iframe>";
 
-$embed_share_box                = str_replace("\n", "", $tpl->include_template("/tpl/map--share-box.tpl.php"));
+$tpl->kml_link = ASH_BASEHTTP . "search.kml?{$snapshot_string}";
+$tpl->csv_link = ASH_BASEHTTP . "search.csv?{$snapshot_string}";
+$tpl->pdf_link = ASH_BASEHTTP . "search.pdf?{$snapshot_string}";
 
-$htm->jquery = <<<JQUERY
-var map;
+$embed_share_box                = str_replace("\n", "", $tpl->include_template(ASH_PLUGINS . 'google.maps/custom/custom.sharebox.tpl.php'));
 
-// Add a custom control share box
-$('#map_canvas').gmap('addControl', 'control', google.maps.ControlPosition.RIGHT_TOP);
-
-// Add custom controls
-map = $('#map_canvas').gmap('get', 'map');
-shareDiv = $('<div/>');
-shareCtl = new ShareControl(shareDiv, map);
-
-shareDiv.index = 1;
-map.controls[google.maps.ControlPosition.TOP_RIGHT].push(shareDiv.get(0));
-
+$htm->javascript = <<<JAVASCRIPT
 
 function ShareControl(controlDiv, map) {
 
@@ -93,7 +86,7 @@ function ShareControl(controlDiv, map) {
   shareBtn.bind('click', function() {
     shareBox.toggle();
     if (shareBox.is(':visible')) {
-        $.get('http://{$embed_link_path}generate/', {
+        $.get('{$embed_link_path}generate/', {
       		'search'   : '{$embed_link_string}',
       		'snapshot' : '{$snapshot_string}'
       	});
@@ -108,5 +101,5 @@ function ShareControl(controlDiv, map) {
 
 }
        
-JQUERY;
+JAVASCRIPT;
 
