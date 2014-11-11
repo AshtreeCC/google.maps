@@ -1,11 +1,11 @@
 <?php
-$tpl->download_link = ASH_BASEHTTP . "search.kml?";
-$tpl->results_url   = ASH_BASEHTTP . preg_replace('/^\//', '', $_SERVER['REQUEST_URI']);
+$tpl->download_link = ASH_ROOTHTTP . "mapa/search.kml?";
+$tpl->results_url   = ASH_ROOTHTTP . preg_replace('/^\//', '', $_SERVER['REQUEST_URI']);
 
 // Put the share box into a variable that can be used again
 $embed_link_path   = ASH_ROOTHTTP . "embed/";
 $embed_link_string = preg_replace('/.*?\?/is', '', $tpl->results_url);
-$snapshot_string   = preg_replace('/.*?\?/is', '', $_SERVER['REQUEST_URI'].'&t=kml');
+$snapshot_string   = preg_replace('/.*?\?/is', '', str_replace('/mapa/', 'a=1', $_SERVER['REQUEST_URI']).'&t=kml');
 
 //$tpl->results_url = $embed_link_path.basic_hash($embed_link_string)."/";
 $tpl->embed_url   = $embed_link_path."map/".basic_hash($embed_link_string)."/";
